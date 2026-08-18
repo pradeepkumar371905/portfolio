@@ -1,522 +1,1385 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pradeep Kumar | Software Developer Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<title>Neon Snake - Pradeep Kumar</title>
 
-    <style>
-        * { scroll-behavior: smooth; }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            background-color: #0b0f19;
-            color: #ffffff;
-        }
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 
-        nav {
-            background-color: #0b0f19;
-            border-bottom: 2px solid #06b6d4;
-        }
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
 
-        .text-neon { color: #06b6d4; }
-        .bg-neon { background-color: #06b6d4; }
+    background:
+        radial-gradient(circle at top, #17243a, #070a11 55%, #020306);
+}
 
-        .copy-box {
-            background-color: #111827;
-            border: 2px solid #06b6d4;
-            border-radius: 12px;
-            color: #ffffff;
-        }
+/* MAIN BOX */
 
-        /* EDUCATION - notebook/photo style */
-        .education-area {
-            margin-top: 80px;
-            background: #ffffff;
-            color: #111111;
-            border-radius: 18px;
-            padding: 45px 25px 55px;
-        }
+.container {
+    width: 100%;
+    max-width: 620px;
 
-        .education-title {
-            text-align: center;
-            font-family: "Comic Sans MS", "Segoe Print", cursive;
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 45px;
-            text-decoration: underline;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 9px;
-        }
+    padding: 24px;
 
-        .education-card {
-            border: 2px solid #111111;
-            border-radius: 15px;
-            padding: 30px 25px;
-            margin-bottom: 35px;
-            text-align: center;
-            font-family: "Comic Sans MS", "Segoe Print", cursive;
-            background: #ffffff;
-        }
+    background: rgba(8, 13, 23, 0.95);
 
-        .education-card:last-child { margin-bottom: 0; }
+    border: 1px solid #263548;
+    border-radius: 25px;
 
-        .education-card h2 {
-            font-size: 28px;
-            font-weight: 600;
-            line-height: 1.3;
-        }
+    box-shadow:
+        0 0 45px rgba(0, 255, 200, 0.08);
+}
 
-        .education-card h3 {
-            font-size: 23px;
-            font-weight: 500;
-            margin-top: 7px;
-        }
 
-        .education-card .year {
-            font-size: 22px;
-            margin: 8px 0;
-        }
+/* START SCREEN */
 
-        .education-card p {
-            font-size: 20px;
-            line-height: 1.6;
-        }
+#startScreen {
+    text-align: center;
+    padding: 45px 15px;
+}
 
-        /* CONTACT - notebook/photo style */
-        .contact-area {
-            margin-top: 60px;
-            background: #ffffff;
-            color: #111111;
-            border-radius: 18px;
-            padding: 45px 25px 55px;
-        }
+.created {
+    color: #00ffc8;
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
 
-        .contact-title {
-            text-align: center;
-            font-family: "Comic Sans MS", "Segoe Print", cursive;
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 40px;
-            text-decoration: underline;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 9px;
-        }
+.name {
+    font-size: clamp(40px, 9vw, 72px);
+    font-weight: 900;
+    letter-spacing: 4px;
 
-        .contact-list {
-            max-width: 700px;
-            margin: auto;
-        }
+    background: linear-gradient(
+        90deg,
+        #00ffc8,
+        #00aaff,
+        #ffffff,
+        #00ffc8
+    );
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-bottom: 25px;
-            font-family: "Comic Sans MS", "Segoe Print", cursive;
-            font-size: 19px;
-            color: #111111;
-        }
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
-        .contact-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border: 2px solid #111111;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
+.game-name {
+    margin-top: 12px;
+    margin-bottom: 35px;
 
-        .contact-item a {
-            color: #111111;
-            text-decoration: none;
-        }
+    color: #8d99ac;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
 
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
+.start-button {
+    padding: 15px 38px;
 
-        @media (max-width: 600px) {
-            .education-area,
-            .contact-area {
-                padding: 35px 15px 45px;
-            }
+    border: none;
+    border-radius: 12px;
 
-            .education-title,
-            .contact-title {
-                font-size: 32px;
-            }
+    background: linear-gradient(
+        135deg,
+        #00ffc8,
+        #00aaff
+    );
 
-            .education-card {
-                padding: 25px 15px;
-            }
+    color: #031016;
 
-            .education-card h2 { font-size: 23px; }
-            .education-card h3 { font-size: 19px; }
-            .education-card .year { font-size: 19px; }
-            .education-card p { font-size: 17px; }
+    font-size: 16px;
+    font-weight: bold;
 
-            .contact-item {
-                font-size: 15px;
-                gap: 12px;
-            }
+    cursor: pointer;
 
-            .contact-icon {
-                width: 40px;
-                height: 40px;
-                min-width: 40px;
-                font-size: 17px;
-            }
-        }
-    </style>
+    box-shadow:
+        0 0 25px rgba(0, 255, 200, 0.25);
+
+    transition: 0.2s;
+}
+
+.start-button:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 0 35px rgba(0, 255, 200, 0.45);
+}
+
+
+/* GAME SCREEN */
+
+#gameScreen {
+    display: none;
+}
+
+
+/* HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+.logo {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #00ffc8;
+}
+
+.scores {
+    display: flex;
+    gap: 8px;
+}
+
+.score-box {
+    min-width: 78px;
+
+    padding: 8px 10px;
+
+    text-align: center;
+
+    background: #0b111b;
+
+    border: 1px solid #263548;
+    border-radius: 10px;
+}
+
+.score-box small {
+    display: block;
+    color: #738096;
+    font-size: 9px;
+}
+
+.score-box strong {
+    color: #00ffc8;
+    font-size: 16px;
+}
+
+
+/* GAME BORDER */
+
+.game-border {
+    padding: 6px;
+
+    border-radius: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #00ffc8,
+        #0066ff,
+        #ff1744,
+        #00ffc8
+    );
+
+    background-size: 300% 300%;
+
+    animation: borderMove 7s linear infinite;
+}
+
+@keyframes borderMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+/* CANVAS */
+
+canvas {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: 15px;
+
+    background-color: #050911;
+}
+
+
+/* GAME OVER */
+
+#gameOver {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    z-index: 20;
+}
+
+.game-over-box {
+    width: min(90%, 350px);
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: #0b111b;
+
+    border: 1px solid #ff1744;
+
+    border-radius: 20px;
+
+    box-shadow: 0 0 35px rgba(255, 23, 68, 0.2);
+}
+
+.game-over-box h2 {
+    color: #ff405f;
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.game-over-box p {
+    color: #9ca8ba;
+    margin-bottom: 20px;
+}
+
+.play-again {
+    padding: 12px 25px;
+
+    border: 1px solid #00ffc8;
+    border-radius: 10px;
+
+    background: transparent;
+
+    color: #00ffc8;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+.play-again:hover {
+    background: #00ffc8;
+    color: #031016;
+}
+
+
+/* MOBILE BUTTONS */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 18px;
+}
+
+.middle-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control {
+    width: 50px;
+    height: 44px;
+
+    border: 1px solid #263548;
+    border-radius: 10px;
+
+    background: #0b111b;
+
+    color: white;
+
+    font-size: 18px;
+
+    cursor: pointer;
+}
+
+.control:hover {
+    color: #00ffc8;
+    border-color: #00ffc8;
+}
+
+.help {
+    text-align: center;
+
+    margin-top: 15px;
+
+    color: #68758a;
+
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.footer {
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: #4f5c70;
+
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .container {
+        padding: 15px;
+        border-radius: 18px;
+    }
+
+    #startScreen {
+        padding: 35px 5px;
+    }
+
+    .name {
+        font-size: 42px;
+    }
+
+    .score-box {
+        min-width: 65px;
+    }
+
+    .control {
+        width: 46px;
+        height: 42px;
+    }
+}
+</style>
 </head>
 
-<body class="font-sans antialiased">
 
-    <!-- NAVIGATION -->
-    <nav class="sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold tracking-wider text-neon font-mono">
-            PRADEEP KUMAR
-        </h1>
+<body>
 
-        <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-400">
-            <a href="#home" class="hover:text-cyan-400 transition">Home</a>
-            <a href="#information" class="hover:text-cyan-400 transition">Information</a>
-            <a href="#skills" class="hover:text-cyan-400 transition">Skills</a>
-            <a href="#projects" class="hover:text-cyan-400 transition">Projects</a>
-            <a href="#education" class="hover:text-cyan-400 transition">Education</a>
-            <a href="#contact" class="hover:text-cyan-400 transition">Contact</a>
-        </div>
+<div class="container">
 
-        <button id="menu-btn"
-            class="text-neon text-2xl md:hidden focus:outline-none">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
 
-    <!-- MOBILE MENU -->
-    <div id="side-menu"
-        class="fixed inset-y-0 right-0 w-64 bg-gray-900 border-l border-cyan-500 z-40 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col pt-24 px-6 space-y-6 text-lg font-semibold">
+<!-- =========================
+     START SCREEN
+========================= -->
 
-        <a href="#home" class="mobile-link text-gray-300 hover:text-neon flex items-center gap-3">
-            <i class="fas fa-home w-6"></i> Home
-        </a>
-        <a href="#information" class="mobile-link text-gray-300 hover:text-neon flex items-center gap-3">
-            <i class="fas fa-info-circle w-6"></i> Information
-        </a>
-        <a href="#skills" class="mobile-link text-gray-300 hover:text-neon flex items-center gap-3">
-            <i class="fas fa-code w-6"></i> Skills
-        </a>
-        <a href="#projects" class="mobile-link text-gray-300 hover:text-neon flex items-center gap-3">
-            <i class="fas fa-tasks w-6"></i> Projects
-        </a>
-        <a href="#education" class="mobile-link text-gray-300 hover:text-neon flex items-center gap-3">
-            <i class="fas fa-graduation-cap w-6"></i> Education
-        </a>
-        <a href="#contact" class="mobile-link text-gray-300 hover:text-neon flex items-center gap-3">
-            <i class="fas fa-envelope w-6"></i> Contact
-        </a>
+<div id="startScreen">
+
+    <div class="created">
+        CREATED BY
     </div>
 
-    <main id="home" class="max-w-3xl mx-auto px-4 py-12 space-y-12">
-
-        <!-- PROFILE -->
-        <section class="flex flex-col items-center text-center space-y-6 pt-4">
-
-            <div class="relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur opacity-40"></div>
-
-                <div class="relative w-44 h-44 rounded-full bg-gray-900 border-4 border-cyan-400 flex flex-col items-center justify-center p-4">
-                    <i class="fas fa-laptop-code text-4xl text-neon mb-2"></i>
-                    <span class="text-[10px] font-mono font-bold tracking-tighter text-gray-300 uppercase">
-                        Software Development
-                    </span>
-                    <span class="text-[9px] text-cyan-400 font-medium">
-                        For Startup
-                    </span>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <h3 class="text-neon font-mono text-sm tracking-wider">Hello, I'm</h3>
-                <h2 class="text-4xl font-extrabold tracking-tight text-white">Pradeep Kumar</h2>
-                <h3 class="text-xl font-bold text-gray-400">Software Developer</h3>
-            </div>
-
-           <!-- 
-<button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded">
-    Download Resume
-</button>
--->
-
-<a href="resume.pdf" download
-   class="block w-full max-w-xl mx-auto bg-cyan-500 hover:bg-cyan-400 text-white font-bold text-xl py-5 px-8 rounded-xl text-center shadow-lg shadow-cyan-500/40 hover:shadow-cyan-400/70 hover:-translate-y-1 transition-all duration-300 cursor-pointer">
-    Download Resume
-</a>
-        </section>
-
-        <!-- INFORMATION -->
-        <section id="information" class="space-y-4 pt-4">
-            <div class="copy-box p-4 flex justify-between items-center shadow-md">
-                <span class="text-cyan-400 font-bold tracking-wide">Name :</span>
-                <span class="font-bold text-white">Pradeep Kumar</span>
-            </div>
-
-            <div class="copy-box p-4 flex justify-between items-center shadow-md">
-                <span class="text-cyan-400 font-bold tracking-wide">Education :</span>
-                <span class="font-bold text-white">B.Tech (CSE)</span>
-            </div>
-
-            <div class="copy-box p-4 flex justify-between items-center shadow-md">
-                <span class="text-cyan-400 font-bold tracking-wide">College :</span>
-                <span class="font-bold text-white">SSVIT</span>
-            </div>
-
-            <div class="copy-box p-4 flex justify-between items-center shadow-md overflow-x-auto">
-                <span class="text-cyan-400 font-bold tracking-wide mr-2">Email :</span>
-                <span class="font-mono text-white text-sm">pradeepshakyap2@gmail.com</span>
-            </div>
-
-            <div class="copy-box p-4 flex justify-between items-center shadow-md">
-                <span class="text-cyan-400 font-bold tracking-wide">Location :</span>
-                <span class="font-bold text-white">India</span>
-            </div>
-
-            <div class="copy-box p-4 flex justify-between items-center shadow-md">
-                <span class="text-cyan-400 font-bold tracking-wide">Interest :</span>
-                <span class="font-bold text-white">Software Development</span>
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section id="skills" class="space-y-6 pt-4">
-            <h3 class="text-2xl font-bold text-white text-center tracking-tight border-b-2 border-gray-800 pb-2">
-                My Skills
-            </h3>
-
-            <div class="copy-box p-5 space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-lg text-white flex items-center gap-2">
-                        <i class="fab fa-java text-neon"></i> Java
-                    </span>
-                    <span class="text-xs text-neon font-mono font-medium">Core & OOPs Stack</span>
-                </div>
-                <div class="w-full bg-gray-800 h-2 rounded-full">
-                    <div class="bg-neon h-2 rounded-full" style="width:85%"></div>
-                </div>
-            </div>
-
-            <div class="copy-box p-5 space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-lg text-white flex items-center gap-2">
-                        <i class="fab fa-python text-neon"></i> Python
-                    </span>
-                    <span class="text-xs text-neon font-mono font-medium">Basics & Logic Stack</span>
-                </div>
-                <div class="w-full bg-gray-800 h-2 rounded-full">
-                    <div class="bg-neon h-2 rounded-full" style="width:75%"></div>
-                </div>
-            </div>
-
-            <div class="copy-box p-5 space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-lg text-white flex items-center gap-2">
-                        <i class="fab fa-html5 text-neon"></i> HTML
-                    </span>
-                    <span class="text-xs text-neon font-mono font-medium">Web UI Interface</span>
-                </div>
-                <div class="w-full bg-gray-800 h-2 rounded-full">
-                    <div class="bg-neon h-2 rounded-full" style="width:80%"></div>
-                </div>
-            </div>
-
-            <div class="copy-box p-5 space-y-3">
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-lg text-white flex items-center gap-2">
-                        <i class="fas fa-code text-neon"></i> C Programming
-                    </span>
-                    <span class="text-xs text-neon font-mono font-medium">Data Structures Basic</span>
-                </div>
-                <div class="w-full bg-gray-800 h-2 rounded-full">
-                    <div class="bg-neon h-2 rounded-full" style="width:70%"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects" class="space-y-6 pt-4">
-            <h3 class="text-2xl font-bold text-white text-center tracking-tight border-b-2 border-gray-800 pb-2">
-                My Projects
-            </h3>
-
-            <div class="copy-box overflow-hidden flex flex-col justify-between hover:border-cyan-400 transition duration-300">
-                <div class="h-44 bg-gradient-to-r from-cyan-900 to-blue-900 flex items-center justify-center">
-                    <i class="fas fa-laptop-code text-6xl text-cyan-400"></i>
-                </div>
-
-                <div class="p-5 space-y-3">
-                    <h4 class="text-xl font-bold text-white">
-                        Software Development Project
-                    </h4>
-
-                    <p class="text-gray-400">
-                        A portfolio project created using HTML, CSS and modern web technologies.
-                    </p>
-
-                    <div class="flex flex-wrap gap-2">
-                        <span class="text-xs bg-gray-800 text-cyan-400 px-3 py-1 rounded-full">HTML</span>
-                        <span class="text-xs bg-gray-800 text-cyan-400 px-3 py-1 rounded-full">CSS</span>
-                        <span class="text-xs bg-gray-800 text-cyan-400 px-3 py-1 rounded-full">Web Development</span>
-
-                        
-                    </div>
-                    <!-- B.TECH 2ND YEAR PROJECT -->
-
-<div style="margin-top: 18px; text-align: center;">
-
-    <div style="
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 1px;
-        color: #94a3b8;
-        margin-bottom: 10px;
-    ">
-        ✦ B.Tech 2nd Year Project ✦
+    <div class="name">
+        PRADEEP KUMAR
     </div>
 
-    <a href="calculator.html"
-       target="_blank"
-       style="
-           display: inline-flex;
-           align-items: center;
-           justify-content: center;
-           gap: 9px;
-           padding: 11px 20px;
-           background: linear-gradient(135deg, #2563eb, #7c3aed);
-           color: white;
-           text-decoration: none;
-           border-radius: 9px;
-           font-size: 14px;
-           font-weight: 600;
-           box-shadow: 0 5px 16px rgba(37, 99, 235, 0.25);
-           transition: all 0.25s ease;
-       "
-       onmouseover="this.style.transform='translateY(-3px)'"
-       onmouseout="this.style.transform='translateY(0)'"
-    >
-        <span>Start Calculator</span>
-        <span style="font-size: 19px;">→</span>
-    </a>
+    <div class="game-name">
+        🐍 NEON SNAKE • DEVELOPER EDITION
+    </div>
+
+    <button
+        class="start-button"
+        id="startButton">
+
+        ▶ START GAME
+
+    </button>
 
 </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- EDUCATION -->
-        <section id="education" class="education-area">
 
-            <h3 class="education-title">Education</h3>
+<!-- =========================
+     GAME SCREEN
+========================= -->
 
-            <div class="education-card">
-                <h2>Bachelor of Technology (B.Tech)</h2>
-                <h3>Computer Science Engineering</h3>
-                <p class="year">2024 – 2028</p>
-                <p>College – SSVIT</p>
-            </div>
+<div id="gameScreen">
 
-            <div class="education-card">
-                <h2>Higher Secondary</h2>
-                <h3>(Class XII)</h3>
-                <p class="year">2023 – 2024</p>
-                <p>
-                    Completed Higher Secondary<br>
-                    Education with Science Stream
-                </p>
+    <div class="header">
+
+        <div class="logo">
+            🐍 <span>NEON</span> SNAKE
+        </div>
+
+        <div class="scores">
+
+            <div class="score-box">
+                <small>SCORE</small>
+                <strong id="score">0</strong>
             </div>
 
-            <div class="education-card">
-                <h2>Secondary School</h2>
-                <h3>(Class X)</h3>
-                <p class="year">2021 – 2022</p>
-                <p>
-                    Completed Secondary Education<br>
-                    with a Strong Academic Foundation
-                </p>
+            <div class="score-box">
+                <small>BEST</small>
+                <strong id="best">0</strong>
             </div>
 
-        </section>
+        </div>
 
-        <!-- CONTACT -->
-        <section id="contact" class="contact-area">
+    </div>
 
-            <h3 class="contact-title">Contact Me</h3>
 
-            <div class="contact-list">
+    <!-- GAME BOARD -->
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <a href="mailto:pradeepshakyap2@gmail.com">
-                        pradeepshakyap2@gmail.com
-                    </a>
-                </div>
+    <div class="game-border">
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <a href="tel:+918307102890">
-                        +91 8307102890
-                    </a>
-                </div>
+        <canvas
+            id="gameCanvas"
+            width="500"
+            height="500">
+        </canvas>
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
-                    </div>
-                    <a href="#" target="_blank">
-                        GitHub Profile
-                    </a>
-                </div>
+    </div>
 
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-location-dot"></i>
-                    </div>
-                    <span>India</span>
-                </div>
 
-            </div>
-        </section>
+    <!-- CONTROLS -->
 
-    </main>
+    <div class="controls">
 
-    <footer class="text-center text-gray-500 text-sm py-8">
-        © 2026 Pradeep Kumar. All Rights Reserved.
-    </footer>
+        <button
+            class="control"
+            data-direction="LEFT">
+            ◀
+        </button>
 
-    <script>
-        const menuBtn = document.getElementById("menu-btn");
-        const sideMenu = document.getElementById("side-menu");
-        const mobileLinks = document.querySelectorAll(".mobile-link");
+        <div class="middle-controls">
 
-        menuBtn.addEventListener("click", function () {
-            sideMenu.classList.toggle("translate-x-full");
-        });
+            <button
+                class="control"
+                data-direction="UP">
+                ▲
+            </button>
 
-        mobileLinks.forEach(function (link) {
-            link.addEventListener("click", function () {
-                sideMenu.classList.add("translate-x-full");
-            });
-        });
-    </script>
+            <button
+                class="control"
+                data-direction="DOWN">
+                ▼
+            </button>
+
+        </div>
+
+        <button
+            class="control"
+            data-direction="RIGHT">
+            ▶
+        </button>
+
+    </div>
+
+
+    <div class="help">
+        Use Arrow Keys or the buttons to move the snake.
+        <br>
+        Eat the 🔴 red food and grow.
+    </div>
+
+
+    <div class="footer">
+        PRADEEP KUMAR • B.TECH CSE • 2026
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- GAME OVER -->
+
+<div id="gameOver">
+
+    <div class="game-over-box">
+
+        <h2>
+            GAME OVER
+        </h2>
+
+        <p>
+            Your Score:
+            <strong id="finalScore">0</strong>
+        </p>
+
+        <button
+            class="play-again"
+            id="restartButton">
+
+            ↻ PLAY AGAIN
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   NEON SNAKE GAME
+   Created By: Pradeep Kumar
+===================================== */
+
+
+/* CANVAS */
+
+const canvas =
+    document.getElementById("gameCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+
+/* SCREEN ELEMENTS */
+
+const startScreen =
+    document.getElementById("startScreen");
+
+const gameScreen =
+    document.getElementById("gameScreen");
+
+const startButton =
+    document.getElementById("startButton");
+
+const restartButton =
+    document.getElementById("restartButton");
+
+const gameOver =
+    document.getElementById("gameOver");
+
+const scoreText =
+    document.getElementById("score");
+
+const bestText =
+    document.getElementById("best");
+
+const finalScore =
+    document.getElementById("finalScore");
+
+
+/* GAME SETTINGS */
+
+const grid = 20;
+
+const cells = 25;
+
+
+/*
+   SLOW SPEED
+
+   Bigger number = slower snake.
+
+   220 = comfortable speed.
+*/
+
+const startingSpeed = 220;
+
+const minimumSpeed = 140;
+
+
+/* GAME VARIABLES */
+
+let snake = [];
+
+let food = {};
+
+let direction = "RIGHT";
+
+let nextDirection = "RIGHT";
+
+let score = 0;
+
+let bestScore =
+    Number(
+        localStorage.getItem("neonSnakeBest")
+    ) || 0;
+
+let speed = startingSpeed;
+
+let timer = null;
+
+let running = false;
+
+
+bestText.textContent =
+    bestScore;
+
+
+/* =========================
+   START GAME
+========================= */
+
+startButton.addEventListener(
+    "click",
+    startGame
+);
+
+
+function startGame() {
+
+    startScreen.style.display = "none";
+
+    gameScreen.style.display = "block";
+
+    newGame();
+}
+
+
+/* =========================
+   NEW GAME
+========================= */
+
+function newGame() {
+
+    clearInterval(timer);
+
+    snake = [
+
+        { x: 12, y: 12 },
+
+        { x: 11, y: 12 },
+
+        { x: 10, y: 12 }
+
+    ];
+
+
+    direction = "RIGHT";
+
+    nextDirection = "RIGHT";
+
+    score = 0;
+
+    speed = startingSpeed;
+
+    scoreText.textContent = score;
+
+    gameOver.style.display = "none";
+
+    createFood();
+
+    running = true;
+
+    timer = setInterval(
+        gameStep,
+        speed
+    );
+
+    draw();
+}
+
+
+/* =========================
+   CREATE FOOD
+========================= */
+
+function createFood() {
+
+    let positionOK = false;
+
+    while (!positionOK) {
+
+        food = {
+
+            x: Math.floor(
+                Math.random() * cells
+            ),
+
+            y: Math.floor(
+                Math.random() * cells
+            )
+
+        };
+
+
+        positionOK =
+            !snake.some(
+                part =>
+                    part.x === food.x &&
+                    part.y === food.y
+            );
+    }
+}
+
+
+/* =========================
+   GAME STEP
+========================= */
+
+function gameStep() {
+
+    if (!running) {
+        return;
+    }
+
+
+    direction = nextDirection;
+
+
+    const head = {
+
+        x: snake[0].x,
+
+        y: snake[0].y
+
+    };
+
+
+    /* MOVE */
+
+    if (direction === "UP") {
+        head.y--;
+    }
+
+    if (direction === "DOWN") {
+        head.y++;
+    }
+
+    if (direction === "LEFT") {
+        head.x--;
+    }
+
+    if (direction === "RIGHT") {
+        head.x++;
+    }
+
+
+    /* WALL COLLISION */
+
+    if (
+
+        head.x < 0 ||
+
+        head.x >= cells ||
+
+        head.y < 0 ||
+
+        head.y >= cells
+
+    ) {
+
+        endGame();
+
+        return;
+    }
+
+
+    /* BODY COLLISION */
+
+    if (
+
+        snake.some(
+            part =>
+                part.x === head.x &&
+                part.y === head.y
+        )
+
+    ) {
+
+        endGame();
+
+        return;
+    }
+
+
+    /* ADD HEAD */
+
+    snake.unshift(head);
+
+
+    /* FOOD */
+
+    if (
+
+        head.x === food.x &&
+
+        head.y === food.y
+
+    ) {
+
+        score++;
+
+        scoreText.textContent = score;
+
+
+        /* HIGH SCORE */
+
+        if (score > bestScore) {
+
+            bestScore = score;
+
+            bestText.textContent =
+                bestScore;
+
+            localStorage.setItem(
+                "neonSnakeBest",
+                bestScore
+            );
+        }
+
+
+        createFood();
+
+
+        /*
+           SPEED INCREASE
+
+           Every 5 points:
+           220 → 210 → 200...
+        */
+
+        if (
+
+            score % 5 === 0 &&
+
+            speed > minimumSpeed
+
+        ) {
+
+            speed -= 10;
+
+            clearInterval(timer);
+
+            timer = setInterval(
+                gameStep,
+                speed
+            );
+        }
+
+    } else {
+
+        /* REMOVE TAIL */
+
+        snake.pop();
+    }
+
+
+    draw();
+}
+
+
+/* =========================
+   DRAW EVERYTHING
+========================= */
+
+function draw() {
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    drawFood();
+
+    drawSnake();
+}
+
+
+/* =========================
+   DRAW SNAKE
+========================= */
+
+function drawSnake() {
+
+    snake.forEach(
+        (part, index) => {
+
+            const x =
+                part.x * grid;
+
+            const y =
+                part.y * grid;
+
+            const size = grid - 4;
+
+
+            /* BODY GRADIENT */
+
+            const gradient =
+                ctx.createLinearGradient(
+                    x,
+                    y,
+                    x + size,
+                    y + size
+                );
+
+
+            gradient.addColorStop(
+                0,
+                index === 0
+                    ? "#ffffff"
+                    : "#00ffc8"
+            );
+
+            gradient.addColorStop(
+                0.5,
+                "#00e6a8"
+            );
+
+            gradient.addColorStop(
+                1,
+                "#008f78"
+            );
+
+
+            ctx.fillStyle = gradient;
+
+
+            /* GLOW */
+
+            ctx.shadowBlur =
+                index === 0 ? 18 : 8;
+
+            ctx.shadowColor =
+                "#00ffc8";
+
+
+            roundRect(
+                x + 2,
+                y + 2,
+                size,
+                size,
+                index === 0 ? 7 : 5
+            );
+
+
+            ctx.fill();
+
+            ctx.shadowBlur = 0;
+
+
+            /* EYES */
+
+            if (index === 0) {
+
+                drawEyes(
+                    x,
+                    y
+                );
+            }
+        }
+    );
+}
+
+
+/* =========================
+   SNAKE EYES
+========================= */
+
+function drawEyes(x, y) {
+
+    ctx.fillStyle = "#061016";
+
+    let eye1;
+    let eye2;
+
+
+    if (direction === "RIGHT") {
+
+        eye1 = {
+            x: x + 14,
+            y: y + 6
+        };
+
+        eye2 = {
+            x: x + 14,
+            y: y + 14
+        };
+
+    } else if (direction === "LEFT") {
+
+        eye1 = {
+            x: x + 6,
+            y: y + 6
+        };
+
+        eye2 = {
+            x: x + 6,
+            y: y + 14
+        };
+
+    } else if (direction === "UP") {
+
+        eye1 = {
+            x: x + 6,
+            y: y + 6
+        };
+
+        eye2 = {
+            x: x + 14,
+            y: y + 6
+        };
+
+    } else {
+
+        eye1 = {
+            x: x + 6,
+            y: y + 14
+        };
+
+        eye2 = {
+            x: x + 14,
+            y: y + 14
+        };
+    }
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        eye1.x,
+        eye1.y,
+        2,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.arc(
+        eye2.x,
+        eye2.y,
+        2,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+}
+
+
+/* =========================
+   DRAW RED FOOD
+========================= */
+
+function drawFood() {
+
+    const x =
+        food.x * grid + grid / 2;
+
+    const y =
+        food.y * grid + grid / 2;
+
+
+    /* RED GLOW */
+
+    ctx.shadowBlur = 25;
+
+    ctx.shadowColor = "#ff1744";
+
+
+    /* RED GRADIENT */
+
+    const gradient =
+        ctx.createRadialGradient(
+            x - 3,
+            y - 3,
+            2,
+            x,
+            y,
+            9
+        );
+
+
+    gradient.addColorStop(
+        0,
+        "#ffffff"
+    );
+
+    gradient.addColorStop(
+        0.2,
+        "#ff7085"
+    );
+
+    gradient.addColorStop(
+        0.6,
+        "#ff1744"
+    );
+
+    gradient.addColorStop(
+        1,
+        "#a50021"
+    );
+
+
+    ctx.fillStyle = gradient;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x,
+        y,
+        8,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    ctx.shadowBlur = 0;
+
+
+    /* HIGHLIGHT */
+
+    ctx.fillStyle = "#ffffff";
+
+    ctx.globalAlpha = 0.8;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        x - 3,
+        y - 3,
+        2,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+    ctx.globalAlpha = 1;
+}
+
+
+/* =========================
+   ROUNDED RECTANGLE
+========================= */
+
+function roundRect(
+    x,
+    y,
+    width,
+    height,
+    radius
+) {
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x + radius,
+        y
+    );
+
+    ctx.lineTo(
+        x + width - radius,
+        y
+    );
+
+    ctx.quadraticCurveTo(
+        x + width,
+        y,
+        x + width,
+        y + radius
+    );
+
+    ctx.lineTo(
+        x + width,
+        y + height - radius
+    );
+
+    ctx.quadraticCurveTo(
+        x + width,
+        y + height,
+        x + width - radius,
+        y + height
+    );
+
+    ctx.lineTo(
+        x + radius,
+        y + height
+    );
+
+    ctx.quadraticCurveTo(
+        x,
+        y + height,
+        x,
+        y + height - radius
+    );
+
+    ctx.lineTo(
+        x,
+        y + radius
+    );
+
+    ctx.quadraticCurveTo(
+        x,
+        y,
+        x + radius,
+        y
+    );
+
+    ctx.closePath();
+}
+
+
+/* =========================
+   CHANGE DIRECTION
+========================= */
+
+function changeDirection(newDirection) {
+
+    if (!running) {
+        return;
+    }
+
+
+    if (
+        newDirection === "UP" &&
+        direction !== "DOWN"
+    ) {
+
+        nextDirection = "UP";
+    }
+
+
+    if (
+        newDirection === "DOWN" &&
+        direction !== "UP"
+    ) {
+
+        nextDirection = "DOWN";
+    }
+
+
+    if (
+        newDirection === "LEFT" &&
+        direction !== "RIGHT"
+    ) {
+
+        nextDirection = "LEFT";
+    }
+
+
+    if (
+        newDirection === "RIGHT" &&
+        direction !== "LEFT"
+    ) {
+
+        nextDirection = "RIGHT";
+    }
+}
+
+
+/* =========================
+   KEYBOARD CONTROLS
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "ArrowUp") {
+
+            event.preventDefault();
+
+            changeDirection("UP");
+
+        }
+
+        else if (event.key === "ArrowDown") {
+
+            event.preventDefault();
+
+            changeDirection("DOWN");
+
+        }
+
+        else if (event.key === "ArrowLeft") {
+
+            event.preventDefault();
+
+            changeDirection("LEFT");
+
+        }
+
+        else if (event.key === "ArrowRight") {
+
+            event.preventDefault();
+
+            changeDirection("RIGHT");
+
+        }
+    }
+);
+
+
+/* =========================
+   MOBILE CONTROLS
+========================= */
+
+document
+    .querySelectorAll(".control")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                changeDirection(
+                    this.dataset.direction
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================
+   GAME OVER
+========================= */
+
+function endGame() {
+
+    running = false;
+
+    clearInterval(timer);
+
+    finalScore.textContent = score;
+
+    gameOver.style.display = "flex";
+}
+
+
+/* =========================
+   PLAY AGAIN
+========================= */
+
+restartButton.addEventListener(
+    "click",
+    function() {
+
+        newGame();
+
+    }
+);
+
+</script>
+
 </body>
 </html>
