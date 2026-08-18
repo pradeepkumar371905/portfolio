@@ -505,6 +505,67 @@
             });
         });
     </script>
+<!-- ==========================================
+     सुंदर स्नेक गेम बटन (HTML + CSS एक साथ)
+     ========================================== -->
+<div style="display: flex; justify-content: center; margin: 40px 0;">
+    <!-- अगर गेम की फाइल का नाम snake.html है, तो href="snake.html" ही रहने दें -->
+    <a href="snake.html" class="snake-game-btn">
+        Play Snake Game 🎮
+    </a>
 
+    <style>
+        .snake-game-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif, Arial;
+            font-weight: 700;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            /* गेमिंग थीम के लिए सुंदर नियॉन ग्रीन ग्रेडिएंट */
+            background: linear-gradient(135deg, #11998e, #38ef7d); 
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(56, 239, 125, 0.4);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* स्मूथ बाउंस इफेक्ट */
+            cursor: pointer;
+            border: none;
+        }
+
+        /* कर्सर (Hover) ले जाते ही होने वाला बदलाव */
+        .snake-game-btn:hover {
+            transform: translateY(-4px) scale(1.06); /* बटन ऊपर उठेगा और थोड़ा बड़ा होगा */
+            background: linear-gradient(135deg, #38ef7d, #11998e); /* रंग पलट जाएगा */
+            box-shadow: 0 8px 25px rgba(56, 239, 125, 0.7); /* तेज चमकता हुआ नियॉन ग्लो */
+        }
+
+        /* बटन पर क्लिक करते समय (Active) */
+        .snake-game-btn:active {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 4px 10px rgba(56, 239, 125, 0.5);
+        }
+
+        /* हल्का सा वेव एनिमेशन जो बैकग्राउंड में चलता रहेगा */
+        .snake-game-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -50%;
+            width: 200%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: 0.75s;
+            opacity: 0;
+        }
+
+        .snake-game-btn:hover::after {
+            opacity: 1;
+            left: 125%;
+        }
+    </style>
+</div>
 </body>
 </html>
