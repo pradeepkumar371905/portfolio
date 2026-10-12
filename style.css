@@ -62,7 +62,7 @@
   justify-content:center;
   margin-top:24px;
 }
-.s-btn{
+.contact-socials a, .s-btn{
   display:inline-flex;
   align-items:center;
   gap:8px;
@@ -72,13 +72,33 @@
   font-weight:600;
   font-size:14px;
   transition: all 0.2s ease;
-  color:#fff;
+  color:#fff !important;
+  border:1px solid rgba(255,255,255,0.1);
 }
-.s-btn:hover{
+.contact-socials a:hover, .s-btn:hover{
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
+
+/* Button Colors - lucide icons ke saath */
+.contact-socials a[href*="wa.me"]{ background:#25D366; }
+.contact-socials a[href*="instagram.com"]{ background: linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5); }
+.contact-socials a[href*="linkedin.com"]{ background:#0A66C2; }
+.contact-actions .btn-ghost{
+  background: rgba(255,255,255,0.08) !important;
+  border:1px solid rgba(255,255,255,0.2) !important;
+  color:#fff !important;
+  border-radius:12px !important;
+  padding:12px 20px !important;
+}
+
 .s-btn.wa{ background:#25D366; }
 .s-btn.insta{ background: linear-gradient(45deg,#feda75,#d62976,#962fbf,#4f5bd5); }
 .s-btn.linked{ background:#0A66C2; }
 .s-btn.mail{ background: rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); }
+
+/* Mobile Fix */
+@media (max-width:480px){
+  .contact-socials{ gap:10px; }
+  .contact-socials a, .s-btn{ padding:10px 14px; font-size:13px; }
+}
