@@ -14,3 +14,34 @@
 @media(max-width:900px){.site-header{gap:12px}.nav-links{gap:15px}.nav-link{font-size:11px}.header-cta{padding:9px 11px}.hero{gap:10px;min-height:630px;padding-top:75px}.photo-halo{width:260px;height:260px}.orbit-one{width:335px;height:335px}.orbit-two{width:385px;height:385px}.hero-visual{transform:scale(.92)}.card-code{left:-8px}.card-student{right:-15px}.project-featured{grid-template-columns:.9fr 1.1fr}.project-featured .project-art{min-height:320px}}
 @media(max-width:700px){.site-header{height:70px;padding:0 20px}.menu-toggle{display:grid;place-items:center;order:3}.menu-toggle svg{width:23px}.header-cta{margin-left:auto}.nav-links{display:none;position:absolute;top:69px;left:0;right:0;padding:18px 22px 22px;background:rgba(8,11,22,.97);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;gap:18px}.nav-links.open{display:flex}.nav-link.active:after{display:none}.section-wrap{padding-left:21px;padding-right:21px}.hero{grid-template-columns:1fr;padding-top:65px;padding-bottom:70px;gap:10px}.hero-copy{position:relative;z-index:5}.hero h1{font-size:clamp(43px,11vw,65px);letter-spacing:-2.5px}.hero-description{font-size:13px}.hero-visual{height:390px;transform:none;margin-top:5px}.photo-halo{width:235px;height:235px}.orbit-one{width:300px;height:300px}.orbit-two{width:345px;height:345px}.card-code{top:45px;left:0}.card-student{right:0;bottom:50px}.floating-card{padding:9px 10px}.floating-card small{font-size:8px}.floating-card strong{font-size:10px}.scroll-cue{left:21px;bottom:18px}.section-block{padding-top:65px}.section-heading h2{font-size:34px}.about-grid,.skills-grid,.projects-grid{grid-template-columns:1fr}.project-featured{grid-column:auto;display:flex;flex-direction:column}.project-featured .project-art{min-height:220px;height:220px}.project-count{font-size:23px}.section-heading-row{align-items:flex-start}.project-content{padding:20px}.timeline-card{padding:18px;gap:12px}.timeline-card h3{font-size:14px}.contact-section{padding-top:50px;padding-bottom:60px}.contact-card{padding:48px 18px 35px}.contact-card h2{font-size:38px}.site-footer{padding:22px 20px;grid-template-columns:1fr auto}.site-footer p{grid-column:1/-1;grid-row:2;margin:0}.back-top{grid-column:2;grid-row:1}.site-footer small{margin-top:12px}.social-hint{display:none}}
 @media(max-width:390px){.brand{font-size:16px}.header-cta{font-size:10px;padding:8px 9px}.hero-actions .btn{padding:12px;font-size:11px}.availability{font-size:9px}.photo-halo{width:210px;height:210px}.orbit-one{width:275px;height:275px}.orbit-two{width:315px;height:315px}.floating-card{gap:7px}.mini-icon{height:29px;width:29px}.card-code{left:-8px}.card-student{right:-8px}.contact-socials{gap:13px}}
+.name-animate{
+  font-size: clamp(3.2rem, 9vw, 6.2rem) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: #fffde7;
+  position: relative;
+  display: inline-block;
+  animation: floatName 3s ease-in-out infinite;
+}
+.name-animate .dot{
+  background: linear-gradient(90deg, #a78bfa, #f472b6, #fb923c, #a78bfa);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientMove 3s linear infinite, dotPulse 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+.name-animate::after{
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.6), transparent);
+  animation: shineSweep 3s ease-in-out infinite;
+}
+@keyframes gradientMove{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+@keyframes dotPulse{0%,100%{transform:scale(1);filter:drop-shadow(0 0 10px #a78bfa)}50%{transform:scale(1.3);filter:drop-shadow(0 0 30px #f472b6)}}
+@keyframes floatName{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes shineSweep{0%{left:-100%}60%{left:150%}100%{left:150%}}
