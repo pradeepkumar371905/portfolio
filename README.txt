@@ -1,20 +1,35 @@
-# Pradeep Kumar Portfolio Upgrade
+# Pradeep Kumar - Portfolio
 
-## Files
-- `index.html` — portfolio content and sections
-- `style.css` — theme, responsive layout, circular photo, floating/scroll animations
-- `script.js` — mobile navigation, scroll progress, reveal effects and rotating headline
-- `assets/pradeep.jpg` — the portrait you uploaded
+Hi, I am Pradeep Kumar. This is my personal portfolio website.
+Live Link: https://pradeepkumar371905.github.io/portfolio/
 
-## Publish to your existing GitHub repository
-1. Download and extract `pradeep-portfolio-upgrade.zip`.
-2. Open your repository: `https://github.com/pradeepkumar371905/portfolio`
-3. Replace the existing `index.html`, `style.css`, and `script.js` with these files.
-4. Upload the `assets` folder too. Keep `assets/pradeep.jpg` at that exact path.
-5. Commit the changes. GitHub Pages will update the live site after a short wait.
+## About Me
+B.Tech Student (2024-2028). I am learning Web Development and building projects.
 
-## Personal links to update
-In `index.html`, search for `data-placeholder-link`. Replace the `href="#"` on those Instagram, LinkedIn, WhatsApp, email and unfinished project links with your actual URLs. The GitHub profile and portfolio links are already set.
+## What is in this Repo? (Files)
+This repo has only 4 main things:
 
-## Important
-The Snake Game and AI Resume Scorer demo/repository links are placeholders because their exact published URLs were not supplied. Update them when ready. The education text is written as an in-progress B.Tech (2024–2028).
+1.  **index.html** - All text and sections of portfolio (Home, About, Projects, Contact)
+2.  **style.css** - Full design, colors, mobile responsive, animations
+3.  **script.js** - Menu, scroll effect, animations
+4.  **assets/pradeep.jpg** - My profile photo
+
+Total 4 files only. Simple.
+
+## My Projects (Shown on website)
+.1  **AI Resume Scorer** - Checks and scores your resume
+.2  **Portfolio Website** - This website itself
+
+## How to run on your laptop?
+1. Download this repo
+2. Open the folder
+3. Double click on `index.html`
+4. Website will open in browser
+
+## Contact
+- GitHub: https://github.com/pradeepkumar371905
+- LinkedIn: (Add your link here)
+- Instagram: (Add your link here)
+
+---
+Made by Pradeep Kumar
